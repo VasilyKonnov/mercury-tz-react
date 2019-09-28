@@ -1,0 +1,45 @@
+.logo-log-in {
+  width: 315px;
+  height: 69px;
+}
+.logo-log-in_layout {
+  margin: 143px auto 124px;
+}
+.logo-log-in__img {
+  width: 100%;
+  height: auto;
+}
+@media screen and (max-width: 1600px) {
+  .logo-log-in_layout {
+    margin: 120px auto 100px;
+  }
+}
+@media screen and (max-width: 1440px) {
+  .logo-log-in_layout {
+    margin: 120px auto 80px;
+  }
+}
+@media screen and (max-width: 1360px) {
+  .logo-log-in_layout {
+    margin: 110px auto 55px;
+  }
+}
+@media screen and (max-width: 1280px) {
+  .logo-log-in_layout {
+    margin: 80px auto 55px;
+  }
+}
+@media screen and (max-width: 1124px) {
+  .logo-log-in_layout {
+    margin: 80px auto 55px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .logo-log-in_layout {
+    margin: 43px auto 37px;
+  }
+  .logo-log-in {
+    width: 182px;
+    height: 40px;
+  }
+}
