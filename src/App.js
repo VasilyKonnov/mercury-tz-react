@@ -1,15 +1,12 @@
-import React from "react";
-import LogoComponent from "./LogoComponent/LogoComponent";
-import LoginForm from "./LoginForm/LoginForm";
-import "./App.module.scss";
-// import classes from "./App.module.scss";
+import React from 'react';
+import AppContainer from './components/AppContainer/AppContainer';
+import './App.module.css';
 
 class App extends React.Component {
   render() {
     return (
       <div>
-        <LogoComponent />
-        <LoginForm />
+        <AppContainer/>
       </div>
     );
   }
