@@ -134,8 +134,9 @@ class LoginForm extends React.Component {
   render() {
     const inputEmailClass = [classes["form-log-in__input"]];
     if (!this.state.validMail) {
-      inputEmailClass.push([classes["input-validator-error"]]);
+      inputEmailClass.push(classes["input-validator-error"]);
     }
+    console.log(inputEmailClass);
 
     let {
       errorEmptyInput,

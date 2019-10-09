@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./LogoComponent.module.scss";
 
 function LogoComponent() {
+  
   return (
     <div
       className={[classes["logo-log-in_layout"], classes["logo-log-in"]].join(
