@@ -1,0 +1,53 @@
+@font-face {
+  font-family: "Gotham";
+  font-weight: 900;
+  src: url("./assets/fonts/GothamPro-Black.woff2") format("woff2"),
+    url("./assets/fonts/GothamPro-Black.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Gotham";
+  font-weight: 500;
+  src: url("./assets/fonts/GothamPro-Medium.woff2") format("woff2"),
+    url("./assets/fonts/GothamPro-Medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Gotham";
+  font-weight: bold;
+  src: url("./assets/fonts/GothamPro-Bold.woff2") format("woff2"),
+    url("./assets/fonts/GothamPro-Bold.woff") format("woff");
+}
+html {
+  height: 100%;
+  min-width: 320px;
+}
+h1 {
+  margin: 0;
+}
+form {
+  margin: 0;
+}
+body {
+  font-family: "GothamProMedium";
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+.main {
+  width: 100%;
+  min-height: 100%;
+  background-color: #ed4159;
+  background-image: url(./assets/img/background.jpg);
+  background-position: center center;
+  background-size: cover;
+  box-sizing: border-box;
+  margin: -1px auto;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .main {
+    background-image: url(./assets/img/background@2x.jpg);
+  }
+}
