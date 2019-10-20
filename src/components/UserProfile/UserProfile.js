@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./UserProfile.module.css";
-import ButtonComponent from "../ButtonComponent/ButtonComponent";
+import Button from "../Button/Button";
 
 function UserProfile(props) {
   const propsClasses = props.className ? props.className.join(" ") : "";
@@ -9,7 +9,6 @@ function UserProfile(props) {
   console.log(props);
 
   function logOut() {
-    console.log("функция логаут из UserProfile");
     return window.location.reload();
   }
 
@@ -21,12 +20,12 @@ function UserProfile(props) {
         src={props.src}
       />
       <h1 className={[classes["user-profile__name"]]}>{props.userName}</h1>
-      <ButtonComponent
+      <Button
         className={[classes["user-profile__logout"]]}
         onClick={logOut}
       >
         Logout
-      </ButtonComponent>
+      </Button>
     </div>
   );
 }

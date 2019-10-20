@@ -1,18 +1,17 @@
 import React from "react";
 import classes from "./LoginForm.module.css";
-import classesInput from "../InputComponent/InputComponent.module.css";
 import classesAppContainer from "../AppContainer/AppContainer.module.css";
-import InputComponent from "../InputComponent/InputComponent";
-import ButtonComponent from "../ButtonComponent/ButtonComponent";
+import Input from "../Input/Input";
+import Button from "../Button/Button";
 import UserProfile from "../UserProfile/UserProfile";
 
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      validEmail: true,
-      inputPass: false,
-      errorEmptyInput: false,
+      validEmail: "true",
+      validPassword: "true",
+      inputPass: false, 
       errorLogin: false,
       emailFill: "",
       passFill: "",
@@ -21,8 +20,7 @@ class LoginForm extends React.Component {
       userProfilePhoto: "",
       userProfileName: "",
       authorization: false,
-      errorMassage: "",
-      showInputErrors: false
+      errorMassage: ""
     };
   }
 
@@ -30,9 +28,8 @@ class LoginForm extends React.Component {
     const patternMail = /.+@.+\..+/i;
     const emailFill = event.target.value;
     this.setState({
-      validEmail: patternMail.test(emailFill),
-      emailFill: emailFill,
-      ErrorEmptyInput: emailFill.length === 0
+      validEmail: toString(patternMail.test(emailFill)),
+      emailFill: emailFill
     });
   };
 
@@ -40,8 +37,7 @@ class LoginForm extends React.Component {
     const passFill = event.target.value;
     this.setState({
       inputPass: passFill.length > 0,
-      passFill: passFill,
-      errorEmptyInput: passFill.length === 0
+      passFill: passFill
     });
   };
 
@@ -82,50 +78,30 @@ class LoginForm extends React.Component {
     try {
       const user = await this.login({ email, password });
       this.setState({
+        validEmail: "true",
+        validPassword: "true",
         userProfilePhoto: user.photoUrl,
         userProfileName: user.name,
-        showInputErrors: false,
         authorization: true
       });
     } catch (error) {
       this.setState({
+        validEmail: "false",
+        validPassword: "false",
         errorLogin: true,
-        errorMassage: error.message,
-        showInputErrors: true
+        errorMassage: error.message
       });
     }
   };
 
-  // logOut = () => {
-  //   console.log("отработал логаут");
-  //   return window.location.reload();
-  // };
-
-  // вывод ошибки
-  // Начало рендера
-
   render() {
     const {
-      validEmail,
       errorMassage,
       errorLogin,
-      showInputErrors,
       authorization,
       userProfileName,
       userProfilePhoto
     } = this.state;
-
-    const inputEmailClasses = [classes["login-form__email"]];
-    const inputPasswordClasses = [classes["login-form__password"]];
-
-    if (!validEmail) {
-      inputEmailClasses.push(classesInput["text-input--invalid"]);
-    }
-
-    if (showInputErrors) {
-      inputEmailClasses.push(classesInput["text-input--invalid"]);
-      inputPasswordClasses.push(classesInput["text-input--invalid"]);
-    }
 
     const propsClasses = this.props.className
       ? this.props.className.join(" ")
@@ -133,24 +109,27 @@ class LoginForm extends React.Component {
     const classNames = [[classes["login-form"]], propsClasses].join(" ");
 
     return (
-      <div>
+      <React.Fragment>
         {!authorization ? (
           <form className={classNames} onSubmit={this.tryLogin}>
             <h1 className={[classes["login-form__title"]]}>Log In</h1>
 
-            <InputComponent
-              className={inputEmailClasses}
+            <Input
+              className={classes["login-form__email"]}
               name="email"
               placeholder="E-Mail"
               onChange={this.handleInputEmail}
               type="text"
+              valid={this.state.validEmail}
             />
-            <InputComponent
-              className={inputPasswordClasses}
+
+            <Input
+              className={classes["login-form__password"]}
               name="password"
               placeholder="Password"
               onChange={this.handleInputPassword}
               type="password"
+              valid={this.state.validPassword}
             />
 
             {errorLogin ? (
@@ -159,9 +138,7 @@ class LoginForm extends React.Component {
               </div>
             ) : null}
 
-            <ButtonComponent className={[classes["login-form__submit"]]}>
-              Login
-            </ButtonComponent>
+            <Button className={[classes["login-form__submit"]]}>Login</Button>
           </form>
         ) : (
           <UserProfile
@@ -170,11 +147,9 @@ class LoginForm extends React.Component {
             alt={userProfileName}
             src={userProfilePhoto}
             type="button"
-            // onClick={console.log("Был клик по LogOut")}
-            // onClick={this.logOut}
           />
         )}
-      </div>
+      </React.Fragment>
     );
   }
 }

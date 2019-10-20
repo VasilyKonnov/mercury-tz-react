@@ -1,4 +1,4 @@
-.text-input {
+.input {
   display: block;
   border-radius: 4px;
   background-color: #f1f1f1;
@@ -13,20 +13,20 @@
   box-sizing: border-box;
 }
 
-.text-input::placeholder {
+.input::placeholder {
   color: rgba(38, 38, 38, 0.4);
 }
 
-.text-input:focus {
+.input:focus {
   border-color: rgba(151, 151, 151, 0.25);
 }
 
-.text-input--invalid,
-.text-input--invalid:focus {
+.input__invalid,
+.input__invalid:focus {
   color: #ed4159;
   border-color: #ed4159;
 }
 
-.text-input--invalid::placeholder {
+.input__invalid::placeholder {
   color: rgba(237, 65, 89, 0.8);
 }
