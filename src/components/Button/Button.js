@@ -1,9 +1,8 @@
 import React from "react";
-import classes from "./ButtonComponent.module.css";
+import classes from "./Button.module.css";
 
-function ButtonComponent(props) {
+function Button(props) {
   const propsClasses = props.className ? props.className.join(" ") : "";
-
   const classNames = [classes["button"], propsClasses].join(" ");
 
   return (
@@ -13,4 +12,4 @@ function ButtonComponent(props) {
   );
 }
 
-export default ButtonComponent;
+export default Button;
