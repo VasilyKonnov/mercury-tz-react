@@ -6,7 +6,7 @@ function Input(props) {
   if (props.valid === "false") {
     classNames = [classNames, classes["input__invalid"]].join(" ");
   }
-  return <input {...props} className={classNames}></input>;
+  return <input {...props} className={classNames} />;
 }
 
 export default Input;
