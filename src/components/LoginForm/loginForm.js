@@ -4,6 +4,7 @@ import classesAppContainer from "../AppContainer/AppContainer.module.css";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
 import UserProfile from "../UserProfile/UserProfile";
+import cx from "classnames";
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -95,6 +96,8 @@ class LoginForm extends React.Component {
   };
 
   render() {
+    let classNames = cx([classes["form"]], this.props.className);
+
     const {
       errorMassage,
       errorLogin,
@@ -102,11 +105,6 @@ class LoginForm extends React.Component {
       userProfileName,
       userProfilePhoto
     } = this.state;
-
-    const propsClasses = this.props.className
-      ? this.props.className.join(" ")
-      : "";
-    const classNames = [[classes["form"]], propsClasses].join(" ");
 
     return (
       <React.Fragment>

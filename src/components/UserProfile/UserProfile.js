@@ -1,12 +1,10 @@
 import React from "react";
 import classes from "./UserProfile.module.css";
 import Button from "../Button/Button";
+import cx from "classnames";
 
 function UserProfile(props) {
-  const propsClasses = props.className ? props.className.join(" ") : "";
-  const classNames = [classes["user-profile"], [propsClasses]].join(" ");
-
-  console.log(props);
+  let classNames = cx([classes["user-profile"]], props.className);
 
   function logOut() {
     return window.location.reload();
@@ -20,10 +18,7 @@ function UserProfile(props) {
         src={props.src}
       />
       <h1 className={[classes["user-profile__name"]]}>{props.userName}</h1>
-      <Button
-        className={[classes["user-profile__logout"]]}
-        onClick={logOut}
-      >
+      <Button className={[classes["user-profile__logout"]]} onClick={logOut}>
         Logout
       </Button>
     </div>
