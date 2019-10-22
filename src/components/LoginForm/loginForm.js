@@ -140,9 +140,8 @@ class LoginForm extends React.Component {
           <UserProfile
             className={[classesAppContainer["app__body"], "panel"]}
             userName={userProfileName}
-            alt={userProfileName}
-            src={userProfilePhoto}
-            type="button"
+            altAvatar={userProfileName}
+            srcAvatar={userProfilePhoto}
           />
         )}
       </React.Fragment>

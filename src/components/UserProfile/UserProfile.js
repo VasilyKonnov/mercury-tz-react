@@ -4,7 +4,7 @@ import Button from "../Button/Button";
 import cx from "classnames";
 
 function UserProfile(props) {
-  let classNames = cx([classes["user-profile"]], props.className);
+  let classNames = cx([classes["user"]], props.className);
 
   function logOut() {
     return window.location.reload();
@@ -13,12 +13,12 @@ function UserProfile(props) {
   return (
     <div className={classNames}>
       <img
-        className={[classes["user-profile__avatar"]]}
-        alt={props.alt}
-        src={props.src}
+        className={[classes["user__avatar"]]}
+        alt={props.altAvatar}
+        src={props.srcAvatar}
       />
-      <h1 className={[classes["user-profile__name"]]}>{props.userName}</h1>
-      <Button className={[classes["user-profile__logout"]]} onClick={logOut}>
+      <h1 className={[classes["user__name"]]}>{props.userName}</h1>
+      <Button className={[classes["user__logout"]]} onClick={logOut}>
         Logout
       </Button>
     </div>
