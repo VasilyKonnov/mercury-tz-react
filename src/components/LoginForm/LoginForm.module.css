@@ -1,7 +1,7 @@
-.login-form {
+.form {
 }
 
-.login-form__title {
+.form__title {
   opacity: 0.8;
   font-family: Gotham, sans-serif;
   font-size: 20px;
@@ -10,17 +10,17 @@
   color: #262626;
 }
 
-.login-form__email {
+.form__email {
   margin-top: 32px;
   width: 100%;
 }
 
-.login-form__password {
+.form__password {
   margin-top: 24px;
   width: 100%;
 }
 
-.login-form__error {
+.form__error {
   margin-top: 24px;
   border-radius: 4px;
   background-color: rgba(237, 65, 89, 0.25);
@@ -30,7 +30,7 @@
   color: #ed4159;
   padding: 14px;
 }
-.login-form__submit {
+.form__submit {
   min-width: 145px;
   margin-top: 40px;
   margin-bottom: 24px;
@@ -39,25 +39,25 @@
 }
 
 @media screen and (min-width: 768px) {
-  .login-form__title {
+  .form__title {
     font-size: 24px;
   }
 
-  .login-form__email {
+  .form__email {
     margin-top: 48px;
   }
 
-  .login-form__password {
+  .form__password {
     margin-top: 32px;
   }
 
-  .login-form__error {
+  .form__error {
     margin-top: 32px;
     font-size: 14px;
     padding: 14px 16px;
   }
 
-  .login-form__submit {
+  .form__submit {
     margin-top: 60px;
     margin-bottom: 12px;
   }

@@ -11,7 +11,7 @@ class LoginForm extends React.Component {
     this.state = {
       validEmail: "true",
       validPassword: "true",
-      inputPass: false, 
+      inputPass: false,
       errorLogin: false,
       emailFill: "",
       passFill: "",
@@ -106,16 +106,16 @@ class LoginForm extends React.Component {
     const propsClasses = this.props.className
       ? this.props.className.join(" ")
       : "";
-    const classNames = [[classes["login-form"]], propsClasses].join(" ");
+    const classNames = [[classes["form"]], propsClasses].join(" ");
 
     return (
       <React.Fragment>
         {!authorization ? (
           <form className={classNames} onSubmit={this.tryLogin}>
-            <h1 className={[classes["login-form__title"]]}>Log In</h1>
+            <h1 className={[classes["form__title"]]}>Log In</h1>
 
             <Input
-              className={classes["login-form__email"]}
+              className={classes["form__email"]}
               name="email"
               placeholder="E-Mail"
               onChange={this.handleInputEmail}
@@ -124,7 +124,7 @@ class LoginForm extends React.Component {
             />
 
             <Input
-              className={classes["login-form__password"]}
+              className={classes["form__password"]}
               name="password"
               placeholder="Password"
               onChange={this.handleInputPassword}
@@ -133,12 +133,10 @@ class LoginForm extends React.Component {
             />
 
             {errorLogin ? (
-              <div className={[classes["login-form__error"]]}>
-                {errorMassage}
-              </div>
+              <div className={[classes["form__error"]]}>{errorMassage}</div>
             ) : null}
 
-            <Button className={[classes["login-form__submit"]]}>Login</Button>
+            <Button className={[classes["form__submit"]]}>Login</Button>
           </form>
         ) : (
           <UserProfile

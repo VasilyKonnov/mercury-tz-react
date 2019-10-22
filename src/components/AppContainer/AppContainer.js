@@ -5,13 +5,13 @@ import logo from "../../assets/img/logo.svg";
 
 function AppContainer() {
   return (
-    <div className={[classes["app-container"]]}>
+    <div className={[classes["app"]]}>
       <img
-        className={[classes["app-container__logo"]]}
+        className={[classes["app__logo"]]}
         src={logo}
         alt="Logo Mercury Developers"
       />
-      <LoginForm className={[classes["app-container__body"], "panel"]} />
+      <LoginForm className={[classes["app__body"], "panel"]} />
     </div>
   );
 }

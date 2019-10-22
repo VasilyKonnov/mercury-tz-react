@@ -6,7 +6,8 @@ function Button(props) {
   const classNames = [classes["button"], propsClasses].join(" ");
 
   return (
-    <button className={classNames} type={props.type} onClick={props.onClick}>
+    // <button className={classNames} type={props.type} onClick={props.onClick}>
+    <button {...props} className={classNames}>
       {props.children}
     </button>
   );
