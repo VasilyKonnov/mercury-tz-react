@@ -4,13 +4,14 @@ import classesAppContainer from "../AppContainer/AppContainer.module.css";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
 import UserProfile from "../UserProfile/UserProfile";
+import cx from "classnames";
 
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      validEmail: "true",
-      validPassword: "true",
+      validEmail: true,
+      validPassword: true,
       inputPass: false,
       errorLogin: false,
       emailFill: "",
@@ -28,7 +29,7 @@ class LoginForm extends React.Component {
     const patternMail = /.+@.+\..+/i;
     const emailFill = event.target.value;
     this.setState({
-      validEmail: toString(patternMail.test(emailFill)),
+      validEmail: patternMail.test(emailFill),
       emailFill: emailFill
     });
   };
@@ -78,16 +79,16 @@ class LoginForm extends React.Component {
     try {
       const user = await this.login({ email, password });
       this.setState({
-        validEmail: "true",
-        validPassword: "true",
+        validEmail: true,
+        validPassword: true,
         userProfilePhoto: user.photoUrl,
         userProfileName: user.name,
         authorization: true
       });
     } catch (error) {
       this.setState({
-        validEmail: "false",
-        validPassword: "false",
+        validEmail: false,
+        validPassword: false,
         errorLogin: true,
         errorMassage: error.message
       });
@@ -95,6 +96,8 @@ class LoginForm extends React.Component {
   };
 
   render() {
+    let classNames = cx([classes["form"]], this.props.className);
+
     const {
       errorMassage,
       errorLogin,
@@ -102,11 +105,6 @@ class LoginForm extends React.Component {
       userProfileName,
       userProfilePhoto
     } = this.state;
-
-    const propsClasses = this.props.className
-      ? this.props.className.join(" ")
-      : "";
-    const classNames = [[classes["form"]], propsClasses].join(" ");
 
     return (
       <React.Fragment>
@@ -120,7 +118,7 @@ class LoginForm extends React.Component {
               placeholder="E-Mail"
               onChange={this.handleInputEmail}
               type="text"
-              valid={this.state.validEmail}
+              valid={this.state.validEmail ? "true" : null}
             />
 
             <Input
@@ -129,7 +127,7 @@ class LoginForm extends React.Component {
               placeholder="Password"
               onChange={this.handleInputPassword}
               type="password"
-              valid={this.state.validPassword}
+              valid={this.state.validPassword ? "true" : null}
             />
 
             {errorLogin ? (
@@ -140,11 +138,10 @@ class LoginForm extends React.Component {
           </form>
         ) : (
           <UserProfile
-            className={[classesAppContainer["app-container__body"], "panel"]}
+            className={[classesAppContainer["app__body"], "panel"]}
             userName={userProfileName}
-            alt={userProfileName}
-            src={userProfilePhoto}
-            type="button"
+            altAvatar={userProfileName}
+            srcAvatar={userProfilePhoto}
           />
         )}
       </React.Fragment>

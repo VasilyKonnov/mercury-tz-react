@@ -1,7 +1,7 @@
-.user-profile {
+.user {
 }
 
-.user-profile__avatar {
+.user__avatar {
   width: 86px;
   height: 86px;
   border-radius: 50%;
@@ -10,7 +10,7 @@
   margin-right: auto;
 }
 
-.user-profile__name {
+.user__name {
   opacity: 0.8;
   font-family: Gotham, sans-serif;
   font-size: 18px;
@@ -21,7 +21,7 @@
   margin-top: 24px;
 }
 
-.user-profile__logout {
+.user__logout {
   min-width: 145px;
   margin-top: 40px;
   margin-bottom: 24px;
@@ -30,17 +30,17 @@
 }
 
 @media screen and (min-width: 768px) {
-  .user-profile__avatar {
+  .user__avatar {
     width: 128px;
     height: 128px;
   }
 
-  .user-profile__name {
+  .user__name {
     font-size: 28px;
     margin-top: 40px;
   }
 
-  .user-profile__logout {
+  .user__logout {
     margin-top: 56px;
   }
 }

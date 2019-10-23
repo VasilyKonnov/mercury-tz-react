@@ -1,12 +1,11 @@
 import React from "react";
 import classes from "./Button.module.css";
+import cx from "classnames";
 
 function Button(props) {
-  const propsClasses = props.className ? props.className.join(" ") : "";
-  const classNames = [classes["button"], propsClasses].join(" ");
+  let classNames = cx(props.className, classes["button"]);
 
   return (
-    // <button className={classNames} type={props.type} onClick={props.onClick}>
     <button {...props} className={classNames}>
       {props.children}
     </button>
