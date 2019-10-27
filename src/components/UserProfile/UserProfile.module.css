@@ -1,7 +1,7 @@
 .user {
 }
 
-.user__avatar {
+.avatar {
   width: 86px;
   height: 86px;
   border-radius: 50%;
@@ -10,7 +10,7 @@
   margin-right: auto;
 }
 
-.user__name {
+.name {
   opacity: 0.8;
   font-family: Gotham, sans-serif;
   font-size: 18px;
@@ -21,7 +21,7 @@
   margin-top: 24px;
 }
 
-.user__logout {
+.logout {
   min-width: 145px;
   margin-top: 40px;
   margin-bottom: 24px;
@@ -30,17 +30,17 @@
 }
 
 @media screen and (min-width: 768px) {
-  .user__avatar {
+  .avatar {
     width: 128px;
     height: 128px;
   }
 
-  .user__name {
+  .name {
     font-size: 28px;
     margin-top: 40px;
   }
 
-  .user__logout {
+  .logout {
     margin-top: 56px;
   }
 }

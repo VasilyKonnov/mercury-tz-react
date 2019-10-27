@@ -13,12 +13,12 @@ function UserProfile(props) {
   return (
     <div className={userClassNames}>
       <img
-        className={[classes["user__avatar"]]}
-        alt={props.altAvatar}
-        src={props.srcAvatar}
+        className={[classes["avatar"]]}
+        alt={props.user.name ? "photo " + props.user.name : "photo user"}
+        src={props.user.photoUrl}
       />
-      <h1 className={[classes["user__name"]]}>{props.userName}</h1>
-      <Button className={[classes["user__logout"]]} onClick={logOut}>
+      <h1 className={[classes["name"]]}>{props.user.name}</h1>
+      <Button className={[classes["logout"]]} onClick={logOut}>
         Logout
       </Button>
     </div>

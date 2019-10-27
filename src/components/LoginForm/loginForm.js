@@ -18,8 +18,7 @@ class LoginForm extends React.Component {
       passFill: "",
       errorResolt: "",
       loginResult: "",
-      userProfilePhoto: "",
-      userProfileName: "",
+      user: null,
       authorization: false,
       errorMassage: ""
     };
@@ -81,8 +80,7 @@ class LoginForm extends React.Component {
       this.setState({
         isEmailValid: true,
         isPasswordValid: true,
-        userProfilePhoto: user.photoUrl,
-        userProfileName: user.name,
+        user: user,
         authorization: true
       });
     } catch (error) {
@@ -98,22 +96,16 @@ class LoginForm extends React.Component {
   render() {
     let formClassNames = classNames([classes["form"]], this.props.className);
 
-    const {
-      errorMassage,
-      errorLogin,
-      authorization,
-      userProfileName,
-      userProfilePhoto
-    } = this.state;
+    const { errorMassage, errorLogin, authorization, user } = this.state;
 
     return (
       <React.Fragment>
         {!authorization ? (
           <form className={formClassNames} onSubmit={this.tryLogin}>
-            <h1 className={[classes["form__title"]]}>Log In</h1>
+            <h1 className={[classes["title"]]}>Log In</h1>
 
             <Input
-              className={classes["form__email"]}
+              className={classes["email"]}
               name="email"
               placeholder="E-Mail"
               onChange={this.handleInputEmail}
@@ -122,7 +114,7 @@ class LoginForm extends React.Component {
             />
 
             <Input
-              className={classes["form__password"]}
+              className={classes["password"]}
               name="password"
               placeholder="Password"
               onChange={this.handleInputPassword}
@@ -131,18 +123,13 @@ class LoginForm extends React.Component {
             />
 
             {errorLogin ? (
-              <div className={[classes["form__error"]]}>{errorMassage}</div>
+              <div className={[classes["error"]]}>{errorMassage}</div>
             ) : null}
 
-            <Button className={[classes["form__submit"]]}>Login</Button>
+            <Button className={[classes["submit"]]}>Login</Button>
           </form>
         ) : (
-          <UserProfile
-            className={[classesAppContainer["app__body"], "panel"]}
-            userName={userProfileName}
-            altAvatar={userProfileName}
-            srcAvatar={userProfilePhoto}
-          />
+          <UserProfile className={[classesAppContainer["body"]]} user={user} />
         )}
       </React.Fragment>
     );
