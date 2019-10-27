@@ -5,11 +5,7 @@ import classNames from "classnames";
 function Button(props) {
   let buttonClassNames = classNames(props.className, classes["button"]);
 
-  return (
-    <button {...props} className={buttonClassNames}>
-      {props.children}
-    </button>
-  );
+  return <button {...props} className={buttonClassNames} />;
 }
 
 export default Button;
