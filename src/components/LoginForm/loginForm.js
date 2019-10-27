@@ -4,22 +4,21 @@ import classesAppContainer from "../AppContainer/AppContainer.module.css";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
 import UserProfile from "../UserProfile/UserProfile";
-import cx from "classnames";
+import classNames from "classnames";
 
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      validEmail: true,
-      validPassword: true,
+      isEmailValid: true,
+      isPasswordValid: true,
       inputPass: false,
       errorLogin: false,
       emailFill: "",
       passFill: "",
       errorResolt: "",
       loginResult: "",
-      userProfilePhoto: "",
-      userProfileName: "",
+      user: null,
       authorization: false,
       errorMassage: ""
     };
@@ -29,7 +28,7 @@ class LoginForm extends React.Component {
     const patternMail = /.+@.+\..+/i;
     const emailFill = event.target.value;
     this.setState({
-      validEmail: patternMail.test(emailFill),
+      isEmailValid: patternMail.test(emailFill),
       emailFill: emailFill
     });
   };
@@ -79,16 +78,15 @@ class LoginForm extends React.Component {
     try {
       const user = await this.login({ email, password });
       this.setState({
-        validEmail: true,
-        validPassword: true,
-        userProfilePhoto: user.photoUrl,
-        userProfileName: user.name,
+        isEmailValid: true,
+        isPasswordValid: true,
+        user: user,
         authorization: true
       });
     } catch (error) {
       this.setState({
-        validEmail: false,
-        validPassword: false,
+        isEmailValid: false,
+        isPasswordValid: false,
         errorLogin: true,
         errorMassage: error.message
       });
@@ -96,53 +94,42 @@ class LoginForm extends React.Component {
   };
 
   render() {
-    let classNames = cx([classes["form"]], this.props.className);
+    let formClassNames = classNames([classes["form"]], this.props.className);
 
-    const {
-      errorMassage,
-      errorLogin,
-      authorization,
-      userProfileName,
-      userProfilePhoto
-    } = this.state;
+    const { errorMassage, errorLogin, authorization, user } = this.state;
 
     return (
       <React.Fragment>
         {!authorization ? (
-          <form className={classNames} onSubmit={this.tryLogin}>
-            <h1 className={[classes["form__title"]]}>Log In</h1>
+          <form className={formClassNames} onSubmit={this.tryLogin}>
+            <h1 className={[classes["title"]]}>Log In</h1>
 
             <Input
-              className={classes["form__email"]}
+              className={classes["email"]}
               name="email"
               placeholder="E-Mail"
               onChange={this.handleInputEmail}
               type="text"
-              valid={this.state.validEmail ? "true" : null}
+              valid={this.state.isEmailValid}
             />
 
             <Input
-              className={classes["form__password"]}
+              className={classes["password"]}
               name="password"
               placeholder="Password"
               onChange={this.handleInputPassword}
               type="password"
-              valid={this.state.validPassword ? "true" : null}
+              valid={this.state.isPasswordValid}
             />
 
             {errorLogin ? (
-              <div className={[classes["form__error"]]}>{errorMassage}</div>
+              <div className={[classes["error"]]}>{errorMassage}</div>
             ) : null}
 
-            <Button className={[classes["form__submit"]]}>Login</Button>
+            <Button className={[classes["submit"]]}>Login</Button>
           </form>
         ) : (
-          <UserProfile
-            className={[classesAppContainer["app__body"], "panel"]}
-            userName={userProfileName}
-            altAvatar={userProfileName}
-            srcAvatar={userProfilePhoto}
-          />
+          <UserProfile className={[classesAppContainer["body"]]} user={user} />
         )}
       </React.Fragment>
     );

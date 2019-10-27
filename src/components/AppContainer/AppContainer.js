@@ -7,11 +7,11 @@ function AppContainer() {
   return (
     <div className={[classes["app"]]}>
       <img
-        className={[classes["app__logo"]]}
+        className={[classes["logo"]]}
         src={logo}
         alt="Logo Mercury Developers"
       />
-      <LoginForm className={[classes["app__body"], "panel"]} />
+      <LoginForm className={[classes["body"]]} />
     </div>
   );
 }

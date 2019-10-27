@@ -7,13 +7,13 @@
   margin-left: auto;
   margin-right: auto;
 }
-.app__logo {
+.logo {
   display: block;
   width: 182px;
   height: 40px;
   margin: 43px auto 0px;
 }
-.app__body {
+.body {
   border-radius: 8px;
   box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.15);
   background-color: white;
@@ -23,13 +23,13 @@
 }
 
 @media screen and (min-width: 768px) {
-  .app__logo {
+  .logo {
     margin-top: 142px;
     width: 315px;
     height: 69px;
   }
 
-  .app__body {
+  .body {
     padding: 48px;
     margin-top: 91px;
   }
