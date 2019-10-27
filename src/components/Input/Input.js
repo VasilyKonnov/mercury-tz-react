@@ -3,11 +3,13 @@ import classes from "./Input.module.css";
 import classNames from "classnames";
 
 function Input(props) {
+  const { valid, ...otherProps } = props;
+
   let inputClassNames = classNames(props.className, classes["input"], {
-    [classes["input__invalid"]]: !props.valid
+    [classes["invalid"]]: !valid
   });
 
-  return <input {...props} className={inputClassNames} />;
+  return <input {...otherProps} className={inputClassNames} />;
 }
 
 export default Input;

@@ -10,8 +10,8 @@ class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      validEmail: true,
-      validPassword: true,
+      isEmailValid: true,
+      isPasswordValid: true,
       inputPass: false,
       errorLogin: false,
       emailFill: "",
@@ -29,7 +29,7 @@ class LoginForm extends React.Component {
     const patternMail = /.+@.+\..+/i;
     const emailFill = event.target.value;
     this.setState({
-      validEmail: patternMail.test(emailFill),
+      isEmailValid: patternMail.test(emailFill),
       emailFill: emailFill
     });
   };
@@ -79,16 +79,16 @@ class LoginForm extends React.Component {
     try {
       const user = await this.login({ email, password });
       this.setState({
-        validEmail: true,
-        validPassword: true,
+        isEmailValid: true,
+        isPasswordValid: true,
         userProfilePhoto: user.photoUrl,
         userProfileName: user.name,
         authorization: true
       });
     } catch (error) {
       this.setState({
-        validEmail: false,
-        validPassword: false,
+        isEmailValid: false,
+        isPasswordValid: false,
         errorLogin: true,
         errorMassage: error.message
       });
@@ -118,7 +118,7 @@ class LoginForm extends React.Component {
               placeholder="E-Mail"
               onChange={this.handleInputEmail}
               type="text"
-              valid={this.state.validEmail ? "true" : null}
+              valid={this.state.isEmailValid}
             />
 
             <Input
@@ -127,7 +127,7 @@ class LoginForm extends React.Component {
               placeholder="Password"
               onChange={this.handleInputPassword}
               type="password"
-              valid={this.state.validPassword ? "true" : null}
+              valid={this.state.isPasswordValid}
             />
 
             {errorLogin ? (
