@@ -1,13 +1,13 @@
 import React from "react";
 import classes from "./Input.module.css";
-import cx from "classnames";
+import classNames from "classnames";
 
 function Input(props) {
-  let classNames = cx(props.className, classes["input"], {
+  let inputClassNames = classNames(props.className, classes["input"], {
     [classes["input__invalid"]]: !props.valid
   });
 
-  return <input {...props} className={classNames} />;
+  return <input {...props} className={inputClassNames} />;
 }
 
 export default Input;
