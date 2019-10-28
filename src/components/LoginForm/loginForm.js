@@ -1,9 +1,7 @@
 import React from "react";
 import classes from "./LoginForm.module.css";
-import classesAppContainer from "../AppContainer/AppContainer.module.css";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
-import UserProfile from "../UserProfile/UserProfile";
 import classNames from "classnames";
 
 class LoginForm extends React.Component {
@@ -12,13 +10,9 @@ class LoginForm extends React.Component {
     this.state = {
       isEmailValid: true,
       isPasswordValid: true,
-      inputPass: false,
       errorLogin: false,
       emailFill: "",
       passFill: "",
-      errorResolt: "",
-      loginResult: "",
-      user: null,
       authorization: false,
       errorMassage: ""
     };
@@ -36,7 +30,6 @@ class LoginForm extends React.Component {
   handleInputPassword = event => {
     const passFill = event.target.value;
     this.setState({
-      inputPass: passFill.length > 0,
       passFill: passFill
     });
   };
@@ -72,7 +65,6 @@ class LoginForm extends React.Component {
     event.preventDefault();
     const email = this.state.emailFill;
     const password = this.state.passFill;
-
     this.hideLoginError();
 
     try {
@@ -80,9 +72,11 @@ class LoginForm extends React.Component {
       this.setState({
         isEmailValid: true,
         isPasswordValid: true,
-        user: user,
         authorization: true
       });
+      if (this.state.authorization) {
+        this.props.setUserData(user);
+      }
     } catch (error) {
       this.setState({
         isEmailValid: false,
@@ -95,43 +89,36 @@ class LoginForm extends React.Component {
 
   render() {
     let formClassNames = classNames([classes["form"]], this.props.className);
-
-    const { errorMassage, errorLogin, authorization, user } = this.state;
+    const { errorMassage, errorLogin } = this.state;
 
     return (
-      <React.Fragment>
-        {!authorization ? (
-          <form className={formClassNames} onSubmit={this.tryLogin}>
-            <h1 className={[classes["title"]]}>Log In</h1>
+      <form className={formClassNames} onSubmit={this.tryLogin}>
+        <h1 className={[classes["title"]]}>Log In</h1>
 
-            <Input
-              className={classes["email"]}
-              name="email"
-              placeholder="E-Mail"
-              onChange={this.handleInputEmail}
-              type="text"
-              valid={this.state.isEmailValid}
-            />
+        <Input
+          className={classes["email"]}
+          name="email"
+          placeholder="E-Mail"
+          onChange={this.handleInputEmail}
+          type="text"
+          valid={this.state.isEmailValid}
+        />
 
-            <Input
-              className={classes["password"]}
-              name="password"
-              placeholder="Password"
-              onChange={this.handleInputPassword}
-              type="password"
-              valid={this.state.isPasswordValid}
-            />
+        <Input
+          className={classes["password"]}
+          name="password"
+          placeholder="Password"
+          onChange={this.handleInputPassword}
+          type="password"
+          valid={this.state.isPasswordValid}
+        />
 
-            {errorLogin ? (
-              <div className={[classes["error"]]}>{errorMassage}</div>
-            ) : null}
+        {errorLogin ? (
+          <div className={[classes["error"]]}>{errorMassage}</div>
+        ) : null}
 
-            <Button className={[classes["submit"]]}>Login</Button>
-          </form>
-        ) : (
-          <UserProfile className={[classesAppContainer["body"]]} user={user} />
-        )}
-      </React.Fragment>
+        <Button className={[classes["submit"]]}>Login</Button>
+      </form>
     );
   }
 }

@@ -9,7 +9,9 @@ function Input(props) {
     [classes["invalid"]]: !valid
   });
 
-  return <input {...otherProps} className={inputClassNames} />;
+  return (
+    <input {...otherProps} className={inputClassNames} autoComplete="on" />
+  );
 }
 
 export default Input;
