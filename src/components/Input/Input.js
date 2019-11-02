@@ -6,7 +6,7 @@ function Input(props) {
   const { valid, ...otherProps } = props;
 
   let inputClassNames = classNames(props.className, classes["input"], {
-    [classes["invalid"]]: !valid
+    [classes["input--invalid"]]: !valid
   });
 
   return <input {...otherProps} className={inputClassNames} />;
