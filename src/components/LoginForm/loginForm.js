@@ -4,13 +4,14 @@ import classesAppContainer from "../AppContainer/AppContainer.module.css";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
 import UserProfile from "../UserProfile/UserProfile";
+import classNames from "classnames";
 
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      validEmail: "true",
-      validPassword: "true",
+      isEmailValid: true,
+      isPasswordValid: true,
       inputPass: false,
       errorLogin: false,
       emailFill: "",
@@ -28,7 +29,7 @@ class LoginForm extends React.Component {
     const patternMail = /.+@.+\..+/i;
     const emailFill = event.target.value;
     this.setState({
-      validEmail: toString(patternMail.test(emailFill)),
+      isEmailValid: patternMail.test(emailFill),
       emailFill: emailFill
     });
   };
@@ -78,16 +79,16 @@ class LoginForm extends React.Component {
     try {
       const user = await this.login({ email, password });
       this.setState({
-        validEmail: "true",
-        validPassword: "true",
+        isEmailValid: true,
+        isPasswordValid: true,
         userProfilePhoto: user.photoUrl,
         userProfileName: user.name,
         authorization: true
       });
     } catch (error) {
       this.setState({
-        validEmail: "false",
-        validPassword: "false",
+        isEmailValid: false,
+        isPasswordValid: false,
         errorLogin: true,
         errorMassage: error.message
       });
@@ -95,6 +96,8 @@ class LoginForm extends React.Component {
   };
 
   render() {
+    let formClassNames = classNames([classes["form"]], this.props.className);
+
     const {
       errorMassage,
       errorLogin,
@@ -103,15 +106,10 @@ class LoginForm extends React.Component {
       userProfilePhoto
     } = this.state;
 
-    const propsClasses = this.props.className
-      ? this.props.className.join(" ")
-      : "";
-    const classNames = [[classes["form"]], propsClasses].join(" ");
-
     return (
       <React.Fragment>
         {!authorization ? (
-          <form className={classNames} onSubmit={this.tryLogin}>
+          <form className={formClassNames} onSubmit={this.tryLogin}>
             <h1 className={[classes["form__title"]]}>Log In</h1>
 
             <Input
@@ -120,7 +118,7 @@ class LoginForm extends React.Component {
               placeholder="E-Mail"
               onChange={this.handleInputEmail}
               type="text"
-              valid={this.state.validEmail}
+              valid={this.state.isEmailValid}
             />
 
             <Input
@@ -129,7 +127,7 @@ class LoginForm extends React.Component {
               placeholder="Password"
               onChange={this.handleInputPassword}
               type="password"
-              valid={this.state.validPassword}
+              valid={this.state.isPasswordValid}
             />
 
             {errorLogin ? (
@@ -140,11 +138,10 @@ class LoginForm extends React.Component {
           </form>
         ) : (
           <UserProfile
-            className={[classesAppContainer["app-container__body"], "panel"]}
+            className={[classesAppContainer["app__body"], "panel"]}
             userName={userProfileName}
-            alt={userProfileName}
-            src={userProfilePhoto}
-            type="button"
+            altAvatar={userProfileName}
+            srcAvatar={userProfilePhoto}
           />
         )}
       </React.Fragment>

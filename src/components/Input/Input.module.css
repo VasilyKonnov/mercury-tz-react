@@ -21,12 +21,12 @@
   border-color: rgba(151, 151, 151, 0.25);
 }
 
-.input__invalid,
-.input__invalid:focus {
+.input--invalid,
+.input--invalid:focus {
   color: #ed4159;
   border-color: #ed4159;
 }
 
-.input__invalid::placeholder {
+.input--invalid::placeholder {
   color: rgba(237, 65, 89, 0.8);
 }

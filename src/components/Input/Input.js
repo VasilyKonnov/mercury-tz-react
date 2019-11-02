@@ -1,22 +1,15 @@
 import React from "react";
 import classes from "./Input.module.css";
+import classNames from "classnames";
 
 function Input(props) {
-  let classNames = [classes["input"], props.className].join(" ");
-  if (props.valid === 'false') {
-    classNames = [classNames, classes["input__invalid"]].join(" ");
-  }
+  const { valid, ...otherProps } = props;
 
-  return (
-    <input
-      className={classNames}
-      name={props.name}
-      placeholder={props.placeholder}
-      onChange={props.onChange}
-      type={props.type}
-      valid={props.valid}
-    ></input>
-  );
+  let inputClassNames = classNames(props.className, classes["input"], {
+    [classes["input--invalid"]]: !valid
+  });
+
+  return <input {...otherProps} className={inputClassNames} />;
 }
 
 export default Input;
